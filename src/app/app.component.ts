@@ -23,7 +23,7 @@ export class AppComponent {
 
   	firebase.auth().onAuthStateChanged(user => {
       if(user) {
-        console.log(user);
+        // console.log(user);
   			this.router.navigate(['dashboard']);
       } else {
   			this.router.navigate(['login']);

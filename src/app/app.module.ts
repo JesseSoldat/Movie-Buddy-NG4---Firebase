@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 //Components
@@ -15,6 +15,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 //Services
 import { AuthService } from './services/auth';
+import { MovieService } from './services/movie';
+
 //Third Party Modules
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -22,6 +24,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SocialComponent } from './components/reg-log/social/social.component';
+import { MovieCardComponent } from './components/movies/movie-card/movie-card.component';
 
 const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
@@ -38,12 +41,14 @@ const appRoutes: Routes = [
     DashboardComponent,
     NavbarComponent,
     RegisterComponent,
-    SocialComponent
+    SocialComponent,
+    MovieCardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
@@ -52,7 +57,8 @@ const appRoutes: Routes = [
 
   ],
   providers: [
-    AuthService
+    AuthService,
+    MovieService
   ],
   bootstrap: [AppComponent]
 })

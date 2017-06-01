@@ -1,2 +1,15 @@
 <app-navbar [isAuthenticated]="isAuthenticated">
 </app-navbar>
+
+<form (ngSubmit)="searchMovies()">
+	<div class="form-group">
+		<label>Find a Movie</label>
+		<input type="text" name="searchStr" class="form-control"
+		[(ngModel)]="searchStr">
+		<br>
+	</div>
+	
+	<button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
