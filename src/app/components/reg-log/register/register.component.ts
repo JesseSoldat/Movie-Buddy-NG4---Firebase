@@ -21,10 +21,11 @@ export class RegisterComponent implements OnInit {
 
   onSocialSignup(type) {
     if(type === 'facebook') {
+      this.authService.facebookSignup();
     }
 
     if(type === 'google') {
-    this.authService.googleSignup();
+      this.authService.googleSignup();
     }
 
     if(type === 'twitter') {     
