@@ -1,23 +1,28 @@
+<!-- <app-navbar (sendToggleLogin)="onToggleLogin($event) [formType]="formType"
+></app-navbar> -->
+
 <div class="container">
 
 	<div class="row">
 		<div class="col-xs-12 col-md-10 col-md-offset-1">
 			<h2>{{formType}}</h2>
 
-			<form class="well">
+			<form class="well" #f="ngForm" 
+			(ngSubmit)="onSubmitForm(f)">
 				<div class="form-group">
 					<label for="email">Email</label>
-					<input type="email" name="email" 
+					<input type="email" name="email" ngModel
 						class="form-control" required>
 				</div>
 
 				<div class="form-group">
 					<label for="password">Password</label>
-					<input type="password" name="password" 
+					<input type="password" name="password" ngModel
 						class="form-control" required>
 				</div>
 
-				<button type="submit" class="btn btn-default">
+				<button type="submit" class="btn btn-default"
+				[disabled]="!f.form.valid">
 					{{formType}}
 				</button>
 			</form>

@@ -1,0 +1,6 @@
+<app-navbar [formType]="formType" [isAuthenticated]="isAuthenticated">
+</app-navbar>
+
+<app-login-form [formType]="formType"
+(userSubmitted)="onUserSubmitted($event)">
+</app-login-form>

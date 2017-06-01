@@ -6,8 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../environments/environment';
 //Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { LoginFormComponent } from './components/shared/login-form/login-form.component';
+//reg-log
+import { LoginComponent } from './components/reg-log/login/login.component';
+import { RegisterComponent } from './components/reg-log/register/register.component';
+import { LoginFormComponent } from './components/reg-log/login-form/login-form.component';
+//user
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 //Services
@@ -16,11 +19,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 const appRoutes: Routes = [
-  // {path: '', component: AppComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'login', component: LoginComponent}
   
 ];
 
@@ -29,7 +33,9 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     LoginFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavbarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
