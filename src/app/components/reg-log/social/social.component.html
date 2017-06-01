@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			<button *ngIf="social.indexOf('google') != -1" 
+			class="btn btn-primary" (click)="socialLogin('google')">Google Login</button>
+			<button *ngIf="social.indexOf('facebook') != -1" 
+			class="btn btn-primary" (click)="socialLogin('facebook')">Facebook Login</button>
+			<button *ngIf="social.indexOf('twitter') != -1" 
+			class="btn btn-primary" (click)="socialLogin('Twitter')">Twitter Login</button>
+			<button *ngIf="social.indexOf('Github') != -1" 
+			class="btn btn-primary" (click)="socialLogin('Twitter')">Github Login</button>
+		</div>
+	</div>
+</div>

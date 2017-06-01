@@ -34,12 +34,19 @@
         </li>
       </ul> -->
       <ul class="nav navbar-nav navbar-right">
+
+        <!-- LOGIN / REGISTER ONLY -->
         <li *ngIf="!isAuthenticated">
           <a *ngIf="formType === 'Login'"
           (click)="toggleLogin('Register')">Register</a>
 
           <a *ngIf="formType === 'Register'"
           (click)="toggleLogin('Login')">Login</a>
+        </li>
+
+        <!-- ENTIRE APP --> 
+        <li *ngIf="isAuthenticated">
+          <a (click)="onLogout()">Logout</a>
         </li>
 
       </ul>

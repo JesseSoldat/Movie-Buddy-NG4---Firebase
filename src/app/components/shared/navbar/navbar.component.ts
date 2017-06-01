@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -9,14 +10,15 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   //Login and Reg
   @Input() formType: string;
+  //Entire app
 	@Input() isAuthenticated:boolean;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private authService: AuthService) { }
 
   ngOnInit() {
   
   }
-
 
   //Login and Reg
   toggleLogin(type: string) {
@@ -28,6 +30,8 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  onLogout() {}
+  onLogout() {
+    this.authService.logOut();
+  }
 
 }

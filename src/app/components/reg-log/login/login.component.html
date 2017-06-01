@@ -5,3 +5,7 @@
 (userSubmitted)="onUserSubmitted($event)">
 </app-login-form>
 
+<app-social (socialType)="onSocialSignup($event)"
+[social]="['facebook', 'google']"></app-social>
+
+

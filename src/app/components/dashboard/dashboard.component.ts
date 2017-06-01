@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+	//Navbar
+	isAuthenticated:boolean = true;
+	
   constructor() { }
+
 
   ngOnInit() {
   }

@@ -14,12 +14,14 @@ import { LoginFormComponent } from './components/reg-log/login-form/login-form.c
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 //Services
+import { AuthService } from './services/auth';
 //Third Party Modules
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { SocialComponent } from './components/reg-log/social/social.component';
 
 const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     LoginFormComponent,
     DashboardComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    SocialComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,9 @@ const appRoutes: Routes = [
     Angular2FontAwesomeModule
 
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
