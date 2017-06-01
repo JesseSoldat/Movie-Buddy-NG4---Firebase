@@ -1,3 +1,8 @@
-<p>
-  movie-card works!
-</p>
+<div id="movieCard">
+	<img id="movieImg" class="thumbnail" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+	<h4 id="movieTitle">{{movie.title}}</h4>
+	<button class="btn btn-primary" (click)="detailsPage(movie)">View</button>
+	<button class="btn btn-secondary" (click)="addToFavorites(movie)">Favorites
+		<i class="fa fa-heart-o" aria-hidden="true"></i>
+	</button>
+</div>

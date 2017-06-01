@@ -1,15 +1,30 @@
 <app-navbar [isAuthenticated]="isAuthenticated">
 </app-navbar>
-
-<form (ngSubmit)="searchMovies()">
-	<div class="form-group">
-		<label>Find a Movie</label>
-		<input type="text" name="searchStr" class="form-control"
-		[(ngModel)]="searchStr">
-		<br>
+<div class="row">
+	<div class="col-xs-12">
+		<form (ngSubmit)="searchMovies()">
+			<div class="form-group-inline col-xs-12 col-sm-6 pull-right">
+				<label>Find a Movie</label>
+				<div class="input-group">
+		      <span class="input-group-btn">
+		        <button class="btn btn-secondary" type="button">Go!</button>
+		      </span>
+		      <input type="text" name="searchStr" class="form-control" placeholder="Search for..."
+					[(ngModel)]="searchStr">
+		      <span class="input-group-btn">
+		      </span>
+		    </div>
+		   </div>
+		</form>
 	</div>
-	
-	<button type="submit" class="btn btn-primary">Search</button>
-</form>
+</div>
+<div class="row">
+	<div class="container">
+		<div class="col-xs-12 col-sm-3 col-md-3" *ngFor="let movie of searchRes">
+			<app-movie-card [movie]="movie" *ngIf="movie.poster_path"></app-movie-card>
+		</div>
+	</div>
+</div>
+
 
 
