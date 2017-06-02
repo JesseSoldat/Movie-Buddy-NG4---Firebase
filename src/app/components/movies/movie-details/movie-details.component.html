@@ -1,3 +1,45 @@
-<p>
-  movie-details works!
-</p>
+<app-navbar [isAuthenticated]="isAuthenticated">
+</app-navbar>
+
+
+<div class="container" *ngIf="movie">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 >{{movie.title}}</h2>
+		</div>
+	</div>
+	<div class="row">
+
+		<div class="col-xs-12 col-md-6">
+			<img class="img-responsive" 
+			src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+		</div>
+
+		<div class="col-xs-12 col-md-6">
+			<ul class="list-group">
+				<li class="list-group-item">
+					<strong>Original Title: </strong><br><br> {{movie.original_title}}
+				</li>
+				<li class="list-group-item" >
+					<strong>Release Date: </strong><br><br>
+					{{movie.release_date}}
+				</li>
+				<li class="list-group-item" >
+					<strong>Production Company: </strong><br><br>{{movie.production_companies[0].name}}
+				</li>
+				<li class="list-group-item" >
+					<strong>Description: </strong><br><br>
+					{{movie.overview}}
+				</li>
+				<button class="btn btn-primary"
+				(click)="goBack()"
+				>Go Back</button>
+				<button class="btn btn-secondary" 
+				(click)="addToFavorites(movie)">Favorites
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+			</button>
+			</ul>
+		</div>
+	</div>
+</div>
+

@@ -12,8 +12,9 @@ export class DashboardComponent implements OnInit {
 	searchStr: string;
 	searchRes;
 	
-  constructor(private movieService: MovieService) { }
-
+  constructor(private movieService: MovieService) { 
+    this.searchRes = JSON.parse(localStorage.getItem('currentSearch')).searchRes; 
+  }
 
   ngOnInit() {
   }
@@ -21,6 +22,7 @@ export class DashboardComponent implements OnInit {
   searchMovies() {
   	this.movieService.searchMovies(this.searchStr).subscribe((movies) => {
   		this.searchRes = movies.results;
+      localStorage.setItem('currentSearch', JSON.stringify({ searchRes: this.searchRes }));
   		console.log(this.searchRes);
   	})
   }

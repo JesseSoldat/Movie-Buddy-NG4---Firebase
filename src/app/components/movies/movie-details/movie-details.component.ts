@@ -8,6 +8,8 @@ import { MovieService } from '../../../services/movie';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
+  isAuthenticated:boolean = true;
+
 	id: string;
 	movie;
   constructor(private movieService: MovieService,
@@ -23,6 +25,13 @@ export class MovieDetailsComponent implements OnInit {
 	  		console.log(movie);
 	  	});
   	})
+  }
+
+  goBack() {
+    this.router.navigate(['dashboard'])
+  }
+
+  addToFavorites(movie) {
 
   }
 
