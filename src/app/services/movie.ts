@@ -2,11 +2,22 @@ import {Injectable} from '@angular/core';
 import { Jsonp } from '@angular/http';
 import 'rxjs/Rx';
 
+//Firebase
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+
 @Injectable() 
 export class MovieService {
 	apiKey: string; // themoviedb API
+	uid: string; 
+	//Firebase
+	movies: FirebaseListObservable<Movie[]>;
+	movie: FirebaseObjectObservable<Movie>;
 
-	constructor(private jsonp: Jsonp) {
+	constructor(private jsonp: Jsonp,
+							private afDb: AngularFireDatabase) {
+		this.uid = JSON.parse(localStorage.getItem('user')).uid; 
 		this.apiKey = 'c79f0a4b4f8b9c843e385c5cdb521ae1'; // themoviedb API
 
 	}
@@ -25,9 +36,12 @@ export class MovieService {
 		 const movie = new Movie(m.title, m.poster_path, m.homepage, m.id,
 		 	m.original_title, m.overview, m.production_companies, 
 		 	m.release_date, m.vote_average );
-
-		 console.log(movie);
-
+		 this.movies = this.afDb.list(`moviedb/users/${this.uid}/movies`) as FirebaseListObservable<Movie[]>;
+		 return this.movies.push(movie);
+	}
+	getMovies(uid) {	
+		this.movies = this.afDb.list(`moviedb/users/${uid}/movies`) as FirebaseListObservable<Movie[]>;
+		return this.movies;
 	}
 }
 

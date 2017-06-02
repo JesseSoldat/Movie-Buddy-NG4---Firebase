@@ -36,6 +36,9 @@ export class AuthService {
 		this.afAuth.auth.signOut()
 			.then(() => {
 				// this.router.navigate(['login']);
+				localStorage.setItem('user', JSON.stringify({ uid: '', name: '' }));
+				localStorage.setItem('currentSearch', JSON.stringify({ searchResult: [] }));
+
 			})
 			.catch((err) => {
 			});

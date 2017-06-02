@@ -25,6 +25,8 @@
 		<div id="movieBtnGroupXs">
 			<button class="btn btn-secondary pull-right" (click)="addToFavorites(movie)">Favorites
 				<i class="fa fa-heart-o" aria-hidden="true"></i>
+				<!-- <i *ngIf="searchRes.hasOwnProperty('favorite')" class="fa fa-heart-o" aria-hidden="true"></i> -->
+
 			</button>
 			<button class="btn btn-primary pull-right" (click)="detailsPage(movie)">View</button>
 		</div>

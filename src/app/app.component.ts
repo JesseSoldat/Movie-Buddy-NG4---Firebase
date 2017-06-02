@@ -19,24 +19,27 @@ export class AppComponent {
 	}
 
   onAuthStateChanged() {
-  	this.user = this.afAuth.authState;
+  
 
   	firebase.auth().onAuthStateChanged(user => {
+
       if(user) {
+        localStorage.setItem('user', JSON.stringify({ uid: user.uid, name: user.displayName }));
         // console.log(user);
+        if(user.displayName === null) {
+          let name   = user.email.substring(0, user.email.lastIndexOf("@"));
+          user.updateProfile({
+            displayName: name
+          }).then(() => {
+            localStorage.setItem('user', JSON.stringify({ uid: user.uid, name: user.displayName }));
+          });
+        }
+
   			this.router.navigate(['dashboard']);
       } else {
   			this.router.navigate(['login']);
       	}     
     }); 
-  	// if(this.user) {
-  	// 	console.log(this.user);
-  	// 	// this.router.navigate(['dashboard']);
-  	// }
-  	// if(!this.user) {
-  	// 	this.router.navigate(['login']);
-  	// }
-    
-
+ 
   }
 }
