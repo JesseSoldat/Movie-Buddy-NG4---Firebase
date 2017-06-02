@@ -1,6 +1,6 @@
 <app-navbar [isAuthenticated]="isAuthenticated">
 </app-navbar>
-<div class="row">
+<div class="row" id="searchRow">
 	<div class="col-xs-12">
 		<form (ngSubmit)="searchMovies()">
 			<div class="form-group-inline col-xs-12 col-sm-6 pull-right">
@@ -19,11 +19,9 @@
 	</div>
 </div>
 <div class="row">
-	<div class="container">
-		<div class="col-xs-12 col-sm-3 col-md-3" *ngFor="let movie of searchRes">
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of searchRes">
 			<app-movie-card [movie]="movie" *ngIf="movie.poster_path"></app-movie-card>
 		</div>
-	</div>
 </div>
 
 

@@ -1,8 +1,74 @@
+/*sm md lg*/
 #movieCard {
-	height: 550px;
+	height: 530px;
+	width: 100%;
+	position: relative;
+	margin-bottom: 3%;
+
+}
+#movieTitle {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 1%;
+	padding: 0;
+	padding-bottom: 1%;
+	text-align: center;
 }
 
 #movieImg {
-	width: 100%;
+	vertical-align: middle;
+	width: 80%;
+	height: 400px;
+	display: block;
+	margin: 0 auto;
+	/*background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:  cover;*/
+  box-shadow: 10px 10px 15px #888888;
+	border-radius: 2%;	
+  
 }
+#movieInfoGroup {
+	margin-top: 2%;
+}
+
+#movieBtnGroup {
+	width: 80%;
+	display: block;
+	margin: 0 auto;
+}
+/*xs*/
+#movieCardXs {
+	height: 500px;
+}
+
+#movieImgXs {
+	display: block;
+	margin: 0 auto;
+	width: 80%;
+	height: 350px;
+	background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:  cover;
+  box-shadow: 10px 10px 10px #888888;
+	border-radius: 1%;	
+}
+#movieTitleXs {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 1%;
+	padding: 0;
+	padding-bottom: 1%;
+	text-align: center;
+}
+#movieInfoGroupXs {
+	margin-top: 2%;
+}
+#movieBtnGroupXs {
+	width: 80%;
+	display: block;
+	margin: 0 auto;
+}
+
+
 

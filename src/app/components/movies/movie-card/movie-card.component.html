@@ -1,8 +1,33 @@
-<div id="movieCard">
-	<img id="movieImg" class="thumbnail" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+<!-- sm md lg -->
+<div id="movieCard" class="hidden-xs">
 	<h4 id="movieTitle">{{movie.title}}</h4>
-	<button class="btn btn-primary" (click)="detailsPage(movie)">View</button>
-	<button class="btn btn-secondary" (click)="addToFavorites(movie)">Favorites
-		<i class="fa fa-heart-o" aria-hidden="true"></i>
-	</button>
+
+	<img id="movieImg" class="thumbnail hidden-xs" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+
+	<div id="movieInfoGroup">
+		<div id="movieBtnGroup">		
+			<button class="btn btn-secondary pull-right" (click)="addToFavorites(movie)">Favorites
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+			</button>
+			<button class="btn btn-primary pull-right" (click)="detailsPage(movie)">View</button>
+		</div>
+	</div>
+	
+</div>
+
+<!-- xs -->
+<div id="movieCardXs" class="hidden-sm hidden-md hidden-lg">
+	<h4 id="movieTitleXs">{{movie.title}}</h4>
+
+	<img id="movieImgXs" class="thumbnail hidden-sm hidden-md hidden-lg" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+
+	<div id="movieInfoGroupXs">
+		<div id="movieBtnGroupXs">
+			<button class="btn btn-secondary pull-right" (click)="addToFavorites(movie)">Favorites
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+			</button>
+			<button class="btn btn-primary pull-right" (click)="detailsPage(movie)">View</button>
+		</div>
+	</div>
+	
 </div>

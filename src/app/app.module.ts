@@ -10,8 +10,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/reg-log/login/login.component';
 import { RegisterComponent } from './components/reg-log/register/register.component';
 import { LoginFormComponent } from './components/reg-log/login-form/login-form.component';
+import { SocialComponent } from './components/reg-log/social/social.component';
+//site
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 //user
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+//movies
+import { MovieCardComponent } from './components/movies/movie-card/movie-card.component';
+import { MovieDetailsComponent } from './components/movies/movie-details/movie-details.component';
 
 //Services
 import { AuthService } from './services/auth';
@@ -22,14 +28,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { SocialComponent } from './components/reg-log/social/social.component';
-import { MovieCardComponent } from './components/movies/movie-card/movie-card.component';
 
 const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
+  {path: 'movie-details', component: MovieDetailsComponent}
   
 ];
 
@@ -42,7 +46,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     RegisterComponent,
     SocialComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -10,8 +10,13 @@ export class MovieService {
 		this.apiKey = 'c79f0a4b4f8b9c843e385c5cdb521ae1';
 
 	}
+
+	getSingleMovie(id: string) {
+		return this.jsonp.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.apiKey}&callback=JSONP_CALLBACK`)
+		.map(result => result.json())
+	}
 	
-	searchMovies (searchStr: string){
+	searchMovies(searchStr: string){
 		return this.jsonp.get(`https://api.themoviedb.org/3/search/movie?&query=${searchStr}&sort_by=popularity.desc&api_key=${this.apiKey}&callback=JSONP_CALLBACK`)
 		.map(result => result.json())
 	}

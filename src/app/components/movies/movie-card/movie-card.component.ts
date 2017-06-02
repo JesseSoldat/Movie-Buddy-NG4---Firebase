@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
@@ -7,15 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MovieCardComponent implements OnInit {
 	@Input() movie;
-  constructor() { 
+  constructor(private router: Router) { 
   }
 
   ngOnInit() {
-  	console.log(this.movie);
   }
 
   detailsPage(movie) {
-  	
+  	this.router.navigate(['movie-details', {id: movie.id}]);
   }
 
   addToFavorites(movie) {
