@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { MovieService } from '../../../services/movie';
 
 @Component({
   selector: 'app-movie-card',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class MovieCardComponent implements OnInit {
 	@Input() movie;
-  constructor(private router: Router) { 
+  constructor(private router: Router,
+              private movieService: MovieService) { 
   }
 
   ngOnInit() {
@@ -19,7 +21,10 @@ export class MovieCardComponent implements OnInit {
   }
 
   addToFavorites(movie) {
-
+    console.log(movie.id);
+    this.movieService.getSingleMovie(movie.id).subscribe((movie) => {
+      this.movieService.addToFavorites(movie);
+      });
   }
 
 }

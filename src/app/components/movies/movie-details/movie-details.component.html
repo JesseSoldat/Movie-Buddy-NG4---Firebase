@@ -1,45 +1,88 @@
-<app-navbar [isAuthenticated]="isAuthenticated">
-</app-navbar>
+<div id="backgroundImg">
+	<app-navbar [isAuthenticated]="isAuthenticated">
+	</app-navbar>
+
+	<div class="container" id="infoWrapper">
+		<div class="panel panel-default" *ngIf="movie" id="infoWrapper">
+
+		  <div class="panel-heading">
+		  	<div class="row">
+					<div class="col-xs-12" *ngIf="title" >
+						<h2  class="text-center hidden-xs">
+							<strong>{{title}}</strong>
+						</h2>
+						<h4 class="text-center hidden-sm hidden-md hidden-lg">
+							<strong>{{title}}</strong>
+						</h4>
+					</div>
+				</div>
+			</div>
 
 
-<div class="container" *ngIf="movie">
-	<div class="row">
-		<div class="col-xs-12">
-			<h2 >{{movie.title}}</h2>
+		  <div class="panel-body" id="infoWrapper">
+		    <div class="row">
+
+					<div class="col-xs-12 col-md-6">
+						<img class="img-responsive img-rounded" *ngIf="poster_path"
+						src="http://image.tmdb.org/t/p/w500/{{poster_path}}">
+					</div>
+
+					<div class="col-xs-12 col-md-6" id="listInfo">
+						<ul class="list-group">
+							<li class="list-group-item" *ngIf="original_title">
+								<strong>Original Title: </strong><br><br> 
+								{{original_title}}
+								<br><br>
+							</li>
+							<li class="list-group-item" *ngIf="release_date">
+								<strong>Release Date: </strong><br><br>
+								{{release_date}}
+								<br><br>
+							</li>
+							<li class="list-group-item" *ngIf="production_companies.length === 1">
+								<strong>Production Company: </strong><br><br>{{production_companies}}
+								<br><br>
+							</li>
+							<li class="list-group-item" *ngIf="production_companies.length > 1">
+								<strong>Production Companies: </strong><br><br>
+								<div *ngFor="let comp of production_companies">
+									{{comp}}
+								</div>
+								<br><br>
+							</li>
+							<li class="list-group-item" *ngIf="vote_average">
+								<strong>Rating: </strong><br><br>{{vote_average}}
+								<br><br>
+							</li>
+							<li class="list-group-item" *ngIf="overview" >
+								<strong>Description: </strong><br><br>
+								{{overview}}
+								<br><br>
+							</li>			
+							<li class="list-group-item" *ngIf="homepage">
+								<strong>Home Page: </strong><br><br>
+								{{homepage}}
+								<br><br>
+							</li>			
+						</ul>
+						<div id="buttonGroup">
+								<button class="btn btn-primary"
+									(click)="goBack()"
+									>Go Back</button>
+									<button class="btn btn-secondary" 
+									(click)="addToFavorites()">Favorites
+									<i class="fa fa-heart-o" aria-hidden="true"></i>
+								</button>
+							</div>
+					</div>
+
+				</div>
+		  </div>
 		</div>
+
 	</div>
-	<div class="row">
 
-		<div class="col-xs-12 col-md-6">
-			<img class="img-responsive" 
-			src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
-		</div>
-
-		<div class="col-xs-12 col-md-6">
-			<ul class="list-group">
-				<li class="list-group-item">
-					<strong>Original Title: </strong><br><br> {{movie.original_title}}
-				</li>
-				<li class="list-group-item" >
-					<strong>Release Date: </strong><br><br>
-					{{movie.release_date}}
-				</li>
-				<li class="list-group-item" >
-					<strong>Production Company: </strong><br><br>{{movie.production_companies[0].name}}
-				</li>
-				<li class="list-group-item" >
-					<strong>Description: </strong><br><br>
-					{{movie.overview}}
-				</li>
-				<button class="btn btn-primary"
-				(click)="goBack()"
-				>Go Back</button>
-				<button class="btn btn-secondary" 
-				(click)="addToFavorites(movie)">Favorites
-				<i class="fa fa-heart-o" aria-hidden="true"></i>
-			</button>
-			</ul>
-		</div>
-	</div>
 </div>
+
+
 

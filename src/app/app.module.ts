@@ -30,10 +30,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'movie-details', component: MovieDetailsComponent}
+  {path: 'movie-details', component: MovieDetailsComponent},
+  { path: '**', redirectTo: 'dashboard' },
   
 ];
 
