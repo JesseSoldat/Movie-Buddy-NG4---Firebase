@@ -30,6 +30,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
+import { SearchBoxComponent } from './components/shared/search-box/search-box.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
     MovieCardComponent,
     MovieDetailsComponent,
     MovieFavoritesComponent,
-    FilterTextPipe
+    FilterTextPipe,
+    SearchBoxComponent
   ],
   imports: [
     BrowserModule,

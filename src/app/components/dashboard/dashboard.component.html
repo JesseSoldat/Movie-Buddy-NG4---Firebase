@@ -1,5 +1,6 @@
 <app-navbar [isAuthenticated]="isAuthenticated">
 </app-navbar>
+
 <div class="row container" id="searchRow">
 	<div class="col-xs-12">
 		<form (ngSubmit)="searchMovies()">
@@ -7,7 +8,7 @@
 				<label>Find a Movie</label>
 				<div class="input-group">
 		      <span class="input-group-btn">
-		        <button class="btn btn-secondary" type="button">Go!</button>
+		        <button class="btn btn-secondary" type="submit">Go!</button>
 		      </span>
 		      <input type="text" name="searchStr" class="form-control" placeholder="Search for..."
 					[(ngModel)]="searchStr">
@@ -18,10 +19,10 @@
 		</form>
 	</div>
 </div>
+
 <div class="row">
-  
-		
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of isFavorite">
+ 	
+<!-- 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of isFavorite">
 			<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
 			(newSearch)="updateSearch($event)"
 			*ngIf="movie.poster_path"></app-movie-card>
@@ -30,6 +31,17 @@
 			<app-movie-card [movie]="movie" [filterTextLength]="filterTextLength"
 			(newSearch)="updateSearch($event)"
 			*ngIf="movie.poster_path"></app-movie-card>
+		</div> -->
+
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of isFavorite">
+			<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
+			(newSearch)="updateSearch($event)"
+			></app-movie-card>
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of notFavorite">
+			<app-movie-card [movie]="movie" [filterTextLength]="filterTextLength"
+			(newSearch)="updateSearch($event)"
+			></app-movie-card>
 		</div>
 </div>
 

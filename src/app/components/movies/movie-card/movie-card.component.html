@@ -2,7 +2,8 @@
 <div id="movieCard" class="hidden-xs">
 	<h4 id="movieTitle">{{movie.title | filterText:filterTextLength}}</h4>
 
-	<img id="movieImg" class="thumbnail hidden-xs" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+	<img *ngIf="movie.poster_path" id="movieImg" class="thumbnail hidden-xs" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+	<img *ngIf="!movie.poster_path" id="movieImg" class="thumbnail hidden-xs" src="../../../../assets/noFilm.png">
 
 	<div id="movieInfoGroup">
 		<div id="movieBtnGroup">
@@ -27,7 +28,10 @@
 <div id="movieCardXs" class="hidden-sm hidden-md hidden-lg">
 	<h4 id="movieTitleXs">{{movie.title | filterText:filterTextLength}}</h4>
 
-	<img id="movieImgXs" class="thumbnail hidden-sm hidden-md hidden-lg" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+	<img *ngIf="movie.poster_path" id="movieImgXs" class="thumbnail hidden-sm hidden-md hidden-lg" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+	<img *ngIf="!movie.poster_path" id="movieImgXs" class="thumbnail hidden-sm hidden-md hidden-lg"
+	src="../../../../assets/noFilm.png">
+
 
 	<div id="movieInfoGroupXs">
 		<div id="movieBtnGroupXs">

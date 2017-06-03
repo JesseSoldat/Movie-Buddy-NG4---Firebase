@@ -51,9 +51,9 @@
 	margin: 0 auto;
 	width: 80%;
 	height: 350px;
-	background-position: 50% 50%;
+/*	background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-size:  cover;
+  background-size:  cover;*/
   box-shadow: 10px 10px 10px #888888;
 	border-radius: 1%;	
 }
