@@ -4,13 +4,14 @@
 <app-search-box [searchLabel]="'Find a favorite'" [placeholder]="'Search...'"
 [inputClass]="'form-group-inline col-xs-12 col-sm-6'"
 (filterText)="onFilterText($event)">
-	
 </app-search-box>
 
 <div class="row">
+
 	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of (isFavorite | filterList:filterListBy)">
-			<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
-			(newSearch)="updateSearch($event)"
-			*ngIf="movie.poster_path"></app-movie-card>
-		</div>
+		<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
+		(newSearch)="updateSearch($event)"
+		*ngIf="movie.poster_path"></app-movie-card>
+	</div>
+
 </div>

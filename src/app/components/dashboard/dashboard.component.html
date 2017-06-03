@@ -1,24 +1,10 @@
 <app-navbar [isAuthenticated]="isAuthenticated">
 </app-navbar>
 
-<div class="row container" id="searchRow">
-	<div class="col-xs-12">
-		<form (ngSubmit)="searchMovies()">
-			<div class="form-group-inline col-xs-12 col-sm-6">
-				<label>Find a Movie</label>
-				<div class="input-group">
-		      <span class="input-group-btn">
-		        <button class="btn btn-secondary" type="submit">Go!</button>
-		      </span>
-		      <input type="text" name="searchStr" class="form-control" placeholder="Search for..."
-					[(ngModel)]="searchStr">
-		      <span class="input-group-btn">
-		      </span>
-		    </div>
-		   </div>
-		</form>
-	</div>
-</div>
+<app-search-box [searchLabel]="'Find a Movie'" [placeholder]="'Search...'"
+[inputClass]="'form-group-inline col-xs-12 col-sm-6'"
+(filterText)="searchMovies($event)">
+</app-search-box>
 
 <div class="row">
  	

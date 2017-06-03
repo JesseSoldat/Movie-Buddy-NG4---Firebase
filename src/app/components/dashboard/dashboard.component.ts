@@ -24,22 +24,23 @@ export class DashboardComponent implements OnInit {
   constructor(private movieService: MovieService) {
     this.searchRes = JSON.parse(localStorage.getItem('currentSearch')).searchRes; 
     this.uid = JSON.parse(localStorage.getItem('user')).uid; 
-    this.compareSearchAndMyList();
-
-    
+    this.compareSearchAndMyList();    
   }
 
   ngOnInit() {
   }
 
-  searchMovies() {
-  	this.movieService.searchMovies(this.searchStr).subscribe((movies) => {
-  		this.searchRes = movies.results;
-      this.compareSearchAndMyList();
+  searchMovies(event) {
+    if(event.length > 1) {
+      this.searchStr = event;
+    
+    	this.movieService.searchMovies(this.searchStr).subscribe((movies) => {
+    		this.searchRes = movies.results;
+        this.compareSearchAndMyList();
 
-      localStorage.setItem('currentSearch', JSON.stringify({ searchRes: this.searchRes }));
-  
-  	});
+        localStorage.setItem('currentSearch', JSON.stringify({ searchRes: this.searchRes }));    
+    	});
+     }
   }
 
   compareSearchAndMyList() {

@@ -1,16 +1,10 @@
 <div class="row container" id="searchRow">
 	<div class="col-xs-12">
-		<form (ngSubmit)="search()">
+		<form>
 			<div class={{inputClass}}>
-				<label>{{searchLabel}}</label>
-				<div class="input-group">
-		      <span class="input-group-btn">
-		        <button class="btn btn-secondary" type="submit"
-		        (click)="search()">Go!</button>
-		      </span>
-		      <input type="text" name="searchStr" class="form-control" placeholder={{placeholder}}
-					[(ngModel)]="searchStr"  (ngModelChange)="change($event)">
-		    </div>
+				<label>{{searchLabel}}</label>      
+	      <input type="text" name="searchStr" class="form-control" placeholder={{placeholder}}
+				[(ngModel)]="searchStr"  (ngModelChange)="change($event)">
 		   </div>
 		</form>
 	</div>
