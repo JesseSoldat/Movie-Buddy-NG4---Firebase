@@ -9,6 +9,9 @@ import { MovieService } from '../../../services/movie';
 })
 export class MovieCardComponent implements OnInit {
 	@Input() movie;
+  @Input() heart;
+  // @Input() isFavorite;
+  // @Input() notFavorite;
   currentSearch;
   @Output() newSearch = new EventEmitter<any>();
   constructor(private router: Router,
@@ -16,14 +19,17 @@ export class MovieCardComponent implements OnInit {
   }
 
   ngOnInit() {
+  
+  }
+  ngOnChanges() {
+
   }
 
   detailsPage(movie) {
   	this.router.navigate(['movie-details', {id: movie.id}]);
   }
 
-  addToFavorites(movie) {
-    console.log(movie.id);
+  addToFavorites(movie) {    
     this.movieService.getSingleMovie(movie.id).subscribe((movie) => {
       this.movieService.addToFavorites(movie).then((res) => {
         this.currentSearch = JSON.parse(localStorage.getItem('currentSearch')).searchRes;
@@ -33,6 +39,12 @@ export class MovieCardComponent implements OnInit {
         this.newSearch.emit(newList);
       });
     });
+  }
+
+  removeFromFavorites(movie) {
+    console.log(movie);
+    let key = movie.$key;
+    this.movieService.removeFromFavorites(key);
   }
 
 }

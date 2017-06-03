@@ -14,25 +14,18 @@ export class DashboardComponent implements OnInit {
 	searchStr: string; //string types in the search bar
 	searchRes; //current result from either searching or loading last result from local storage
   favorites; //user's favorite movies stored in firebase
+  //---------------
+  heart: boolean = true;
+
+  isFavorite;
+  notFavorite;
 	
   constructor(private movieService: MovieService) {
     this.searchRes = JSON.parse(localStorage.getItem('currentSearch')).searchRes; 
     this.uid = JSON.parse(localStorage.getItem('user')).uid; 
+    this.compareSearchAndMyList();
 
-    this.movieService.getMovies(this.uid).subscribe((movies) => {
-      this.favorites = movies;
-      let isFavorite =  _.intersectionBy(this.favorites, this.searchRes, 'id');
-      let notFavorite = _.differenceBy( this.searchRes, this.favorites, 'id');
-      isFavorite.forEach((fav) => {
-        fav['heart'] = true;
-      });
-      let updateRes = _.concat(isFavorite, notFavorite);
-      this.searchRes = updateRes;
     
-      console.log(isFavorite);
-      console.log(notFavorite);
-
-    });
   }
 
   ngOnInit() {
@@ -41,9 +34,25 @@ export class DashboardComponent implements OnInit {
   searchMovies() {
   	this.movieService.searchMovies(this.searchStr).subscribe((movies) => {
   		this.searchRes = movies.results;
+      this.compareSearchAndMyList();
+
       localStorage.setItem('currentSearch', JSON.stringify({ searchRes: this.searchRes }));
   
   	});
+  }
+
+  compareSearchAndMyList() {
+    this.movieService.getMovies(this.uid).subscribe((movies) => {
+      this.favorites = movies;
+      this.isFavorite =  _.intersectionBy(this.favorites, this.searchRes, 'id');
+      this.notFavorite = _.differenceBy( this.searchRes, this.favorites, 'id');
+     
+      let updateRes = _.concat(this.isFavorite, this.notFavorite);
+      this.searchRes = updateRes;
+    
+      // console.log(this.isFavorite);
+      // console.log(this.notFavorite);
+    });
   }
 
   updateSearch(event) {

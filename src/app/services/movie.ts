@@ -39,6 +39,11 @@ export class MovieService {
 		 this.movies = this.afDb.list(`moviedb/users/${this.uid}/movies`) as FirebaseListObservable<Movie[]>;
 		 return this.movies.push(movie);
 	}
+	removeFromFavorites(key) {
+		this.movies = this.afDb.list(`moviedb/users/${this.uid}/movies`) as FirebaseListObservable<Movie[]>;
+		this.movies.remove(key)
+	}
+
 	getMovies(uid) {	
 		this.movies = this.afDb.list(`moviedb/users/${uid}/movies`) as FirebaseListObservable<Movie[]>;
 		return this.movies;
