@@ -11,7 +11,9 @@ export class MovieFavoritesComponent implements OnInit {
 	isAuthenticated: boolean = true;
 	isFavorite;
   heart: boolean = true;
+  //Pipes
 	filterTextLength: number = 25;
+  filterListBy: string; //ngModel on text input
 
   constructor(private movieService: MovieService) { 
   	this.uid = JSON.parse(localStorage.getItem('user')).uid;
@@ -23,6 +25,10 @@ export class MovieFavoritesComponent implements OnInit {
   		this.isFavorite = fav;
   	
   	});
+  }
+
+  onFilterText(event) {
+    this.filterListBy = event;
   }
 
 }

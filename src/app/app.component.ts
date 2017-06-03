@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -10,7 +10,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 	user: Observable<firebase.User>;
 
 	constructor(private router: Router,
@@ -18,11 +18,14 @@ export class AppComponent {
 	   this.onAuthStateChanged(); 
 	}
 
+  ngOnInit() {
+    this.router.events.filter(event => event instanceof NavigationEnd).subscribe(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+
   onAuthStateChanged() {
-  
-
   	firebase.auth().onAuthStateChanged(user => {
-
       if(user) {
         localStorage.setItem('user', JSON.stringify({ uid: user.uid, name: user.displayName }));
         // console.log(user);
@@ -34,7 +37,6 @@ export class AppComponent {
             localStorage.setItem('user', JSON.stringify({ uid: user.uid, name: user.displayName }));
           });
         }
-
   			this.router.navigate(['dashboard']);
       } else {
   			this.router.navigate(['login']);

@@ -9,7 +9,7 @@
 		        (click)="search()">Go!</button>
 		      </span>
 		      <input type="text" name="searchStr" class="form-control" placeholder={{placeholder}}
-					[(ngModel)]="searchStr">
+					[(ngModel)]="searchStr"  (ngModelChange)="change($event)">
 		    </div>
 		   </div>
 		</form>

@@ -21,6 +21,7 @@ import { MovieDetailsComponent } from './components/movies/movie-details/movie-d
 import { MovieFavoritesComponent } from './components/movies/movie-favorites/movie-favorites.component';
 //Pipes
 import { FilterTextPipe } from './pipes/filterText';
+import { FilterListPipe } from './pipes/FilterList';
 //Services
 import { AuthService } from './services/auth';
 import { MovieService } from './services/movie';
@@ -55,8 +56,9 @@ const appRoutes: Routes = [
     MovieCardComponent,
     MovieDetailsComponent,
     MovieFavoritesComponent,
+    SearchBoxComponent,
     FilterTextPipe,
-    SearchBoxComponent
+    FilterListPipe,
   ],
   imports: [
     BrowserModule,
