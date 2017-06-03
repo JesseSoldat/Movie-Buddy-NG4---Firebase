@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   favorites; //user's favorite movies stored in firebase
   //---------------
   heart: boolean = true;
+  filterTextLength: number = 25;
 
   isFavorite;
   notFavorite;
@@ -42,7 +43,7 @@ export class DashboardComponent implements OnInit {
   }
 
   compareSearchAndMyList() {
-    this.movieService.getMovies(this.uid).subscribe((movies) => {
+    this.movieService.getFavorites(this.uid).subscribe((movies) => {
       this.favorites = movies;
       this.isFavorite =  _.intersectionBy(this.favorites, this.searchRes, 'id');
       this.notFavorite = _.differenceBy( this.searchRes, this.favorites, 'id');

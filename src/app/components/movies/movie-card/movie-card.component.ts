@@ -10,8 +10,8 @@ import { MovieService } from '../../../services/movie';
 export class MovieCardComponent implements OnInit {
 	@Input() movie;
   @Input() heart;
-  // @Input() isFavorite;
-  // @Input() notFavorite;
+  @Input() filterTextLength;
+
   currentSearch;
   @Output() newSearch = new EventEmitter<any>();
   constructor(private router: Router,
@@ -19,6 +19,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   ngOnInit() {
+ 
   
   }
   ngOnChanges() {

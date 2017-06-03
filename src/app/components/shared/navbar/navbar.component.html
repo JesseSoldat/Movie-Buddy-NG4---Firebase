@@ -12,7 +12,7 @@
       <!-- !Authenticated -->
       <a class="navbar-brand" *ngIf="!isAuthenticated">Movie Buddy</a>
       <!-- Authenticated -->
-      <a class="navbar-brand" [routerLink]="['']" *ngIf="isAuthenticated">Movie Buddy</a>
+      <a class="navbar-brand" [routerLink]="['../dashboard']" *ngIf="isAuthenticated">Movie Buddy</a>
 
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -45,6 +45,9 @@
         </li>
 
         <!-- ENTIRE APP --> 
+        <li *ngIf="isAuthenticated">
+          <a [routerLink]="['../movie-favorites']">Favorites</a>
+        </li>
         <li *ngIf="isAuthenticated">
           <a (click)="onLogout()">Logout</a>
         </li>

@@ -18,7 +18,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 //movies
 import { MovieCardComponent } from './components/movies/movie-card/movie-card.component';
 import { MovieDetailsComponent } from './components/movies/movie-details/movie-details.component';
-
+import { MovieFavoritesComponent } from './components/movies/movie-favorites/movie-favorites.component';
+//Pipes
+import { FilterTextPipe } from './pipes/filterText';
 //Services
 import { AuthService } from './services/auth';
 import { MovieService } from './services/movie';
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'movie-details', component: MovieDetailsComponent},
-  { path: '**', redirectTo: 'dashboard' },
+  {path: 'movie-favorites', component: MovieFavoritesComponent},
+  // { path: '**', redirectTo: 'dashboard' },
   
 ];
 
@@ -49,7 +52,9 @@ const appRoutes: Routes = [
     RegisterComponent,
     SocialComponent,
     MovieCardComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    MovieFavoritesComponent,
+    FilterTextPipe
   ],
   imports: [
     BrowserModule,
