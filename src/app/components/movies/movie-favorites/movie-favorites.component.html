@@ -10,7 +10,7 @@
 
 	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of (isFavorite | filterList:filterListBy)">
 		<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
-		(newSearch)="updateSearch($event)"
+		(newSearch)="updateSearch($event)" [nav]="'favorites'" 
 		*ngIf="movie.poster_path"></app-movie-card>
 	</div>
 

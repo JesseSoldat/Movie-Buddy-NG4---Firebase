@@ -11,6 +11,7 @@ export class MovieCardComponent implements OnInit {
 	@Input() movie;
   @Input() heart;
   @Input() filterTextLength;
+  @Input() nav;
   key: string;
  
   currentSearch;
@@ -25,10 +26,10 @@ export class MovieCardComponent implements OnInit {
   detailsPage(movie, heart) {
     if(heart === 'heart') {
       this.key = movie.$key
-      this.router.navigate(['movie-details', {id: movie.id, key: this.key}]);
+      this.router.navigate(['movie-details', {id: movie.id, key: this.key, nav: this.nav}]);
     }
     if(heart === '!heart') {
-     this.router.navigate(['movie-details', {id: movie.id}]); 
+     this.router.navigate(['movie-details', {id: movie.id, nav: this.nav}]); 
     }
   	
   }

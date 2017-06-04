@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../../../services/movie';
 
@@ -8,6 +8,7 @@ import { MovieService } from '../../../services/movie';
   styleUrls: ['./movie-details.component.css']
 })
 export class MovieDetailsComponent implements OnInit {
+  @Input() nav: string;
   isAuthenticated:boolean = true;
   id: string; //id of the movie on the movie database
   key: string; //key to where we store
@@ -33,6 +34,8 @@ export class MovieDetailsComponent implements OnInit {
   	this.route.params.subscribe((params) => {
   		this.id = params['id'];
       this.key = params['key'];
+      this.nav = params['nav'];
+
       if(this.key === undefined) {
         this.heart = false;
       }
@@ -63,7 +66,12 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['dashboard'])
+    if(this.nav === 'dashboard') {
+      this.router.navigate(['dashboard']);
+    }
+    if(this.nav === 'favorites') {
+      this.router.navigate(['movie-favorites']);
+    }   
   }
 
   addToFavorites() {
