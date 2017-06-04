@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../../services/movie';
 import * as _ from 'lodash';
 
+declare let jQuery: any;
 
 @Component({
   selector: 'app-movie-favorites',
@@ -21,6 +22,7 @@ export class MovieFavoritesComponent implements OnInit {
   myMovieIds = [];
   isMatchNoMatchList = [];
 
+
   constructor(private movieService: MovieService) { 
   	this.uid = JSON.parse(localStorage.getItem('user')).uid;
   }
@@ -30,13 +32,22 @@ export class MovieFavoritesComponent implements OnInit {
   		this.isFavorite = fav;
   	  // console.log(this.isFavorite);
   	});
+
+    jQuery("#myModal").on("hide.bs.modal", () => {
+      
+    });
   }
 
   onFilterText(event) {
     this.filterListBy = event;
   }
 
+  cancel() {
+
+  }
+
   searchOtherList() {
+    jQuery('#myModal').modal('show');
     this.movieService.getOtherLists().subscribe((users) => {
       
      let array;
@@ -69,14 +80,30 @@ export class MovieFavoritesComponent implements OnInit {
       this.allUsersMovieIds.forEach((array) =>  {
         let matchObj = {
           isMatch:  _.intersection(this.myMovieIds, array),
-          noMatch: _.difference( this.myMovieIds, array)
+          noMatch: _.difference( this.myMovieIds, array),
+          length: 0
         };
+        let length = matchObj.isMatch.length;
+        matchObj.length = length;
+
         this.isMatchNoMatchList.push(matchObj);
       });
-  
-      // console.dir(this.myIdArray);   
-      console.log(this.isMatchNoMatchList);
+
+     function compare(b,a) {
+      if (a.length < b.length)
+        return -1;
+      if (a.length > b.length)
+        return 1;
+      return 0;
+    }
+
+    this.isMatchNoMatchList.sort(compare); 
+     console.log(this.isMatchNoMatchList);
     });
-  }  
+
+   } 
+   
+
+   
 
 }
