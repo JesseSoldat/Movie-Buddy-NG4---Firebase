@@ -1,9 +1,8 @@
 <app-navbar [isAuthenticated]="isAuthenticated">
 </app-navbar>
 
-<app-search-box [searchLabel]="'Find a favorite'" [placeholder]="'Search...'"
-[inputClass]="'form-group-inline col-xs-12 col-sm-6'"
-(filterText)="onFilterText($event)">
+<app-search-box  [placeholder]="'Filter your List...'" [inputClass]="'form-group-inline col-xs-12 col-sm-6'" 
+[searchList]="'searchList'" (filterText)="onFilterText($event)" (searchOtherList)="searchOtherList()">
 </app-search-box>
 
 <div class="row">

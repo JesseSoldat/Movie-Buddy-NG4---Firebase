@@ -14,6 +14,7 @@ export class MovieService {
 	//Firebase
 	movies: FirebaseListObservable<Movie[]>;
 	movie: FirebaseObjectObservable<Movie>;
+	otherUserList: FirebaseListObservable<any>;
 
 	constructor(private jsonp: Jsonp,
 							private afDb: AngularFireDatabase) {
@@ -50,6 +51,12 @@ export class MovieService {
 	getFavorites(uid) {	
 		this.movies = this.afDb.list(`moviedb/users/${uid}/movies`) as FirebaseListObservable<Movie[]>;
 		return this.movies;
+	}
+
+	getOtherLists() {
+		this.otherUserList = this.afDb.list(`moviedb/users`) as FirebaseListObservable<any>;
+		return this.otherUserList;
+
 	}
 }
 

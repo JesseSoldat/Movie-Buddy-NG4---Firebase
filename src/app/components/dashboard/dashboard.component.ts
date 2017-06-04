@@ -51,15 +51,7 @@ export class DashboardComponent implements OnInit {
      
       let updateRes = _.concat(this.isFavorite, this.notFavorite);
       this.searchRes = updateRes;
-    
-      // console.log(this.isFavorite);
-      // console.log(this.notFavorite);
     });
-  }
-
-  updateSearch(event) {
-    // console.log(event);
-    // this.searchRes = event;
   }
 
 }
