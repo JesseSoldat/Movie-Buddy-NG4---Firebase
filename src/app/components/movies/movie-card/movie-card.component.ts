@@ -11,23 +11,26 @@ export class MovieCardComponent implements OnInit {
 	@Input() movie;
   @Input() heart;
   @Input() filterTextLength;
-
+  key: string;
+ 
   currentSearch;
   @Output() newSearch = new EventEmitter<any>();
   constructor(private router: Router,
               private movieService: MovieService) { 
   }
 
-  ngOnInit() {
- 
-  
-  }
-  ngOnChanges() {
-
+  ngOnInit() { 
   }
 
-  detailsPage(movie) {
-  	this.router.navigate(['movie-details', {id: movie.id}]);
+  detailsPage(movie, heart) {
+    if(heart === 'heart') {
+      this.key = movie.$key
+      this.router.navigate(['movie-details', {id: movie.id, key: this.key}]);
+    }
+    if(heart === '!heart') {
+     this.router.navigate(['movie-details', {id: movie.id}]); 
+    }
+  	
   }
 
   addToFavorites(movie) {    
@@ -43,8 +46,8 @@ export class MovieCardComponent implements OnInit {
   }
 
   removeFromFavorites(movie) {
-    console.log(movie);
     let key = movie.$key;
+    console.log(key);
     this.movieService.removeFromFavorites(key);
   }
 

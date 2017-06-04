@@ -9,7 +9,9 @@ import { MovieService } from '../../../services/movie';
 })
 export class MovieDetailsComponent implements OnInit {
   isAuthenticated:boolean = true;
-  id: string;
+  id: string; //id of the movie on the movie database
+  key: string; //key to where we store
+  heart: boolean; 
 
   //Movie
   movie;
@@ -30,6 +32,14 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit() {
   	this.route.params.subscribe((params) => {
   		this.id = params['id'];
+      this.key = params['key'];
+      if(this.key === undefined) {
+        this.heart = false;
+      }
+      if(this.key !== undefined) {
+        this.heart = true;
+      }
+   
   		this.movieService.getSingleMovie(this.id).subscribe((movie) => {
 	  		this.movie = movie;
         this.title = movie.title;
@@ -57,8 +67,15 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   addToFavorites() {
-    console.dir(this.movie);
-    this.movieService.addToFavorites(this.movie);
+    this.heart = true;
+    this.movieService.addToFavorites(this.movie).then((key) => {
+      this.key = key;
+    })
+  }
+
+  removeFromFavorites() {
+    this.heart = false;
+    this.movieService.removeFromFavorites(this.key);
   }
 
 

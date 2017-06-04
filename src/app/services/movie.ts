@@ -37,7 +37,10 @@ export class MovieService {
 		 	m.original_title, m.overview, m.production_companies, 
 		 	m.release_date, m.vote_average );
 		 this.movies = this.afDb.list(`moviedb/users/${this.uid}/movies`) as FirebaseListObservable<Movie[]>;
-		 return this.movies.push(movie);
+		 return this.movies.push(movie).then((item) => { 
+      return item.key
+    });
+		 
 	}
 	removeFromFavorites(key) {
 		this.movies = this.afDb.list(`moviedb/users/${this.uid}/movies`) as FirebaseListObservable<Movie[]>;

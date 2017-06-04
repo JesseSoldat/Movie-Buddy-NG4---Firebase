@@ -6,29 +6,20 @@
 (filterText)="searchMovies($event)">
 </app-search-box>
 
-<div class="row">
+<div class="row"> 
  	
-<!-- 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of isFavorite">
-			<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
-			(newSearch)="updateSearch($event)"
-			*ngIf="movie.poster_path"></app-movie-card>
-		</div>
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of notFavorite">
-			<app-movie-card [movie]="movie" [filterTextLength]="filterTextLength"
-			(newSearch)="updateSearch($event)"
-			*ngIf="movie.poster_path"></app-movie-card>
-		</div> -->
+	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of isFavorite">
+		<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
+		(newSearch)="updateSearch($event)"
+		></app-movie-card>
+	</div>
 
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of isFavorite">
-			<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
-			(newSearch)="updateSearch($event)"
-			></app-movie-card>
-		</div>
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of notFavorite">
-			<app-movie-card [movie]="movie" [filterTextLength]="filterTextLength"
-			(newSearch)="updateSearch($event)"
-			></app-movie-card>
-		</div>
+	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of notFavorite">
+		<app-movie-card [movie]="movie" [filterTextLength]="filterTextLength"
+		(newSearch)="updateSearch($event)"
+		></app-movie-card>
+	</div>
+	
 </div>
 
 

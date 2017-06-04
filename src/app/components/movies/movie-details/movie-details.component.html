@@ -69,9 +69,13 @@
 								<button class="btn btn-primary"
 									(click)="goBack()"
 									>Go Back</button>
-									<button class="btn btn-secondary" 
+								<button *ngIf="this.heart === false"  class="btn btn-secondary" 
 									(click)="addToFavorites()">Favorites
 									<i class="fa fa-heart-o" aria-hidden="true"></i>
+								</button>
+								<button *ngIf="this.heart === true"  class="btn btn-secondary" 
+									(click)="removeFromFavorites()">Favorites
+									<i class="fa fa-heart" aria-hidden="true" id="red"></i>
 								</button>
 							</div>
 					</div>

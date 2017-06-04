@@ -18,7 +18,8 @@
 				<i  class="fa fa-heart" aria-hidden="true" id="red"></i>
 			</button>
 			
-			<button class="btn btn-primary pull-right" (click)="detailsPage(movie)">View</button>
+			<button *ngIf="!heart" class="btn btn-primary pull-right" (click)="detailsPage(movie, '!heart')">View</button>
+			<button *ngIf="heart" class="btn btn-primary pull-right" (click)="detailsPage(movie, 'heart')">View</button>
 		</div>
 	</div>
 	
@@ -38,10 +39,11 @@
 			<button class="btn btn-secondary pull-right" (click)="addToFavorites(movie)">Favorites
 				<i *ngIf="!heart" class="fa fa-heart-o" aria-hidden="true"></i>
 				<i *ngIf="heart" class="fa fa-heart" aria-hidden="true" id="red"></i>
-				
-
 			</button>
-			<button class="btn btn-primary pull-right" (click)="detailsPage(movie)">View</button>
+
+			<button *ngIf="!heart" class="btn btn-primary pull-right" (click)="detailsPage(movie, '!heart')">View</button>
+			<button *ngIf="heart" class="btn btn-primary pull-right" (click)="detailsPage(movie, 'heart')">View</button>
+
 		</div>
 	</div>
 	
