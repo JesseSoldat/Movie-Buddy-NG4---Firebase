@@ -16,7 +16,10 @@ export class MovieFavoritesComponent implements OnInit {
   //Pipes
 	filterTextLength: number = 25;
   filterListBy: string; //ngModel on text input
-  matchingUsers = [];
+
+  allUsersMovieIds = []; //
+  myMovieIds = [];
+  isMatchNoMatchList = [];
 
   constructor(private movieService: MovieService) { 
   	this.uid = JSON.parse(localStorage.getItem('user')).uid;
@@ -38,23 +41,42 @@ export class MovieFavoritesComponent implements OnInit {
       
      let array;
       users.forEach((user) => {
-        if(this.uid !== user.$key) {
-          // console.log(user.movies);
-          let a = [];
+        if(this.uid === user.$key) {
           for(let key in user.movies) {
             
             if (user.movies.hasOwnProperty(key)) { 
                 var value = user.movies[key];
-                // console.log(value.id);
-                a.push(value.id);
+                this.myMovieIds.push(value.id);
+              }
+          } //for    
+        }
+
+        if(this.uid !== user.$key) {
+          let tempArray = [];
+          for(let key in user.movies) {
+            
+            if (user.movies.hasOwnProperty(key)) { 
+                var value = user.movies[key];
+         
+                tempArray.push(value.id);
               }
           } //for
-        this.matchingUsers.push(a);       
+        this.allUsersMovieIds.push(tempArray);       
         }
 
       }); //forEach
-      console.log(this.matchingUsers);
+     
+      this.allUsersMovieIds.forEach((array) =>  {
+        let matchObj = {
+          isMatch:  _.intersection(this.myMovieIds, array),
+          noMatch: _.difference( this.myMovieIds, array)
+        };
+        this.isMatchNoMatchList.push(matchObj);
+      });
+  
+      // console.dir(this.myIdArray);   
+      console.log(this.isMatchNoMatchList);
     });
-  }
+  }  
 
 }
