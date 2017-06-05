@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
 
         if(user.displayName === null) {
           let name   = user.email.substring(0, user.email.lastIndexOf("@"));
+          name = name.charAt(0).toUpperCase() + name.slice(1);
           user.updateProfile({
             displayName: name
           }).then(() => {

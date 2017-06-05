@@ -14,12 +14,14 @@ import { SocialSplashComponent } from './components/reg-log/social-splash/social
 import { SocialComponent } from './components/reg-log/social/social.component';
 //site
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { SearchBoxComponent } from './components/shared/search-box/search-box.component';
 //user
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 //movies
 import { MovieCardComponent } from './components/movies/movie-card/movie-card.component';
 import { MovieDetailsComponent } from './components/movies/movie-details/movie-details.component';
 import { MovieFavoritesComponent } from './components/movies/movie-favorites/movie-favorites.component';
+import { MovieMatchesComponent } from './components/movies/movie-matches/movie-matches.component';
 //Pipes
 import { FilterTextPipe } from './pipes/filterText';
 import { FilterListPipe } from './pipes/FilterList';
@@ -32,7 +34,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
-import { SearchBoxComponent } from './components/shared/search-box/search-box.component';
 
 
 const appRoutes: Routes = [
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'movie-details', component: MovieDetailsComponent},
   {path: 'movie-favorites', component: MovieFavoritesComponent},
+  {path: 'movie-matches', component: MovieMatchesComponent},
   // { path: '**', redirectTo: 'dashboard' },
   
 ];
@@ -63,6 +65,7 @@ const appRoutes: Routes = [
     FilterTextPipe,
     FilterListPipe,
     SocialSplashComponent,
+    MovieMatchesComponent,
   ],
   imports: [
     BrowserModule,

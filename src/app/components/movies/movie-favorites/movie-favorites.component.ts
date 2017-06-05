@@ -48,10 +48,11 @@ export class MovieFavoritesComponent implements OnInit {
 
   searchOtherList() {
     jQuery('#myModal').modal('show');
-    this.movieService.getOtherLists().subscribe((users) => {
+    this.movieService.getUsersLists().subscribe((users) => {
       
      let array;
       users.forEach((user) => {
+
         if(this.uid === user.$key) {
           for(let key in user.movies) {
             
@@ -59,22 +60,26 @@ export class MovieFavoritesComponent implements OnInit {
                 var value = user.movies[key];
                 this.myMovieIds.push(value.id);
               }
-          } //for    
+          } //for 
+        localStorage.setItem('myMovieIds', JSON.stringify({ myMovieIds: this.myMovieIds }));
+
         }
 
         if(this.uid !== user.$key) {
           let tempArray = [];
+          tempArray.push(user.name);
           tempArray.push(user.$key);
-
+          // console.log(user.movies);
           for(let key in user.movies) {
-            
+             
             if (user.movies.hasOwnProperty(key)) { 
                 var value = user.movies[key];
          
                 tempArray.push(value.id);
               }
           } //for
-        this.allUsersMovieIds.push(tempArray);       
+        this.allUsersMovieIds.push(tempArray);    
+        // console.log(this.allUsersMovieIds);   
         }
 
       }); //forEach
@@ -82,13 +87,19 @@ export class MovieFavoritesComponent implements OnInit {
       this.allUsersMovieIds.forEach((array) =>  {
         // console.log(array);
         let matchObj = {
-          uid: array[0],
-          isMatch:  _.intersection(this.myMovieIds, array),
-          noMatch: _.difference( this.myMovieIds, array),
+          name: '',
+          uid: '',
+          isMatch:  [],
+          noMatch: [],
           length: 0
         };
+        matchObj.name = array.shift();
+        matchObj.uid = array.shift();
+        matchObj.isMatch = _.intersection(array, this.myMovieIds);
+        matchObj.noMatch = _.difference(array, this.myMovieIds);
         let length = matchObj.isMatch.length;
         matchObj.length = length;
+        // console.log(matchObj);
 
         this.isMatchNoMatchList.push(matchObj);
       });

@@ -1,7 +1,7 @@
 <app-navbar [isAuthenticated]="isAuthenticated">
 </app-navbar>
 <div class="container-fluid">
-  <h2>My Favortes</h2>
+  <h2>My Favorites</h2>
   <hr>
 </div>
 <app-search-box *ngIf="isFavorite && isFavorite.length >= 1"  [placeholder]="'Filter your List...'" [inputClass]="'form-group-inline col-xs-12 col-sm-6'" 
@@ -47,10 +47,10 @@
         <ul class="list-group">
         	<li class="list-group-item"
         	*ngFor="let person of isMatchNoMatchList">
-        		<!-- <a [routerLink]="['/friends-list', {id: friend.uid}]"
-        			data-dismiss="modal"> -->
-        			<h4>{{person.uid}}</h4>
-        		<!-- </a> -->
+        		<a [routerLink]="['../movie-matches', {uid: person.uid, name: person.name}]"
+        			data-dismiss="modal">
+              <h4>{{person.name}}</h4>
+        		</a>
         		<hr>
         		<h4><strong>Matches: </strong>{{person.isMatch.length}}</h4>
         		<h4><strong>Other Movies: </strong> {{person.noMatch.length}}</h4>

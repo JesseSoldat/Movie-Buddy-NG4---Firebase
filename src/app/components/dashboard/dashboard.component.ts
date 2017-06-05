@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.searchRes);
+    // console.log(this.searchRes);
   }
 
   searchMovies(event) {
