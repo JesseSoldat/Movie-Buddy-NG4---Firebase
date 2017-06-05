@@ -1,12 +1,28 @@
 <app-navbar [isAuthenticated]="isAuthenticated">
 </app-navbar>
-
-<app-search-box  [placeholder]="'Filter your List...'" [inputClass]="'form-group-inline col-xs-12 col-sm-6'" 
+<div class="container-fluid">
+  <h2>My Favortes</h2>
+  <hr>
+</div>
+<app-search-box *ngIf="isFavorite && isFavorite.length >= 1"  [placeholder]="'Filter your List...'" [inputClass]="'form-group-inline col-xs-12 col-sm-6'" 
 [searchList]="'searchList'" (filterText)="onFilterText($event)" (searchOtherList)="searchOtherList()">
 </app-search-box>
 
-<div class="row">
+<div *ngIf="isFavorite && isFavorite.length < 1" class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-sm-offset-2">
+    <div class="col-xs-12 col-sm-6">
+      <h3>You dont' have any favorites yet.</h3>
+      <h4>Get started at the dashboard</h4>
+      <button class="btn btn-primary" [routerLink]="['']">Let's begin!</button>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <img class="img-responsive" src="../../../../assets/filmAction.png">
+    </div>
+  </div>
+  
+</div>
 
+<div class="row">
 	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-3" *ngFor="let movie of (isFavorite | filterList:filterListBy)">
 		<app-movie-card [movie]="movie" [heart]="heart" [filterTextLength]="filterTextLength"
 		(newSearch)="updateSearch($event)" [nav]="'favorites'" 

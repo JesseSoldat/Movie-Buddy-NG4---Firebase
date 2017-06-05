@@ -10,8 +10,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable() 
 export class MovieService {
 	apiKey: string; // themoviedb API
-	// uid: string; 
+
 	//Firebase
+	name: FirebaseObjectObservable<string>;
 	movies: FirebaseListObservable<Movie[]>;
 	movie: FirebaseObjectObservable<Movie>;
 	otherUserList: FirebaseListObservable<any>;
@@ -34,6 +35,11 @@ export class MovieService {
 	}
 
 	// Firebase---------------------------------------------------------
+	addName(n, uid) {
+		this.name = this.afDb.object(`moviedb/users/${uid}/name`) as FirebaseObjectObservable<string>;
+		this.name.set(n);
+	}
+
 	addToFavorites(m, uid) {
 		 const movie = new Movie(m.title, m.poster_path, m.homepage, m.id,
 		 	m.original_title, m.overview, m.production_companies, 

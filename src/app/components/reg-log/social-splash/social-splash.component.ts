@@ -16,14 +16,14 @@ export class SocialSplashComponent implements OnInit {
   	this.route.params.subscribe((params) => {
   		this.social = params['social'];
   		setTimeout(() => {
-  			this.router.navigate(['dashboard']);
-  		}, 3000);
+  			this.router.navigate(['movie-favorites']);
+  		}, 2000);
   	});
   
   }
 
   navigate() {
-  	this.router.navigate(['dashboard']);
+  	this.router.navigate(['movie-favorites']);
   }
 
 }

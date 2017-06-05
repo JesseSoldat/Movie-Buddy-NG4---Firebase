@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import { MovieService } from './services/movie';
+
 
 @Component({
   selector: 'app-root',
@@ -14,8 +16,10 @@ export class AppComponent implements OnInit {
 	user: Observable<firebase.User>;
   uid: string;
 
+
 	constructor(private router: Router,
-							public afAuth: AngularFireAuth) {
+							public afAuth: AngularFireAuth,
+              public movieService: MovieService) {
 	   this.onAuthStateChanged(); 
 	}
 
@@ -40,23 +44,27 @@ export class AppComponent implements OnInit {
           user.updateProfile({
             displayName: name
           }).then(() => {
+            this.movieService.addName(user.displayName, this.uid);
             localStorage.setItem('user', JSON.stringify({ uid: user.uid, name: user.displayName }));
           });
         }
 
         let provider = user.providerData[0].providerId;
         if(provider === 'facebook.com') {
-          console.log('facebook');
+          // console.log('facebook');
+          this.movieService.addName(user.displayName, this.uid);
+
           this.router.navigate(['social-splash', {social: 'facebook'}]);
 
         } 
         if(provider === 'google.com') {
-          console.log('google');
+          this.movieService.addName(user.displayName, this.uid);
+          // console.log('google');
           this.router.navigate(['social-splash', {social: 'google'}]);
         }
         if(provider === 'password'){
-          console.log(provider);
-          this.router.navigate(['dashboard']);
+          // console.log(provider);
+          this.router.navigate(['movie-favorites']);
         }
 
       } else {

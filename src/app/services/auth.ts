@@ -19,16 +19,18 @@ export class AuthService {
 	}
 
 	googleSignup() {
-		this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+		this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((res) => {
+			console.log(res);
+		});
 	}
 
 	facebookSignup() {
 		this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(function(result) {		
 		  // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+		  console.log(result);
 		  let token = result.credential.accessToken;
 		  // The signed-in user info.
-		  let user = result.user;
-		}).catch(function(err) {
+		  let user = result.user;		
 		});
 	}
 
