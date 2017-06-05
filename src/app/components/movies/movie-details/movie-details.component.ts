@@ -75,7 +75,12 @@ export class MovieDetailsComponent implements OnInit {
     }
     if(this.nav === 'favorites') {
       this.router.navigate(['movie-favorites']);
-    }   
+    } 
+    if(this.nav === 'matches') {
+      let name = JSON.parse(localStorage.getItem('matchUser')).name;
+      let uid = JSON.parse(localStorage.getItem('matchUser')).uid;
+      this.router.navigate(['movie-matches', {name: name, uid: uid}]);
+    } 
   }
 
   addToFavorites() {

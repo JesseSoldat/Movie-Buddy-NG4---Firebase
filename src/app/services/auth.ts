@@ -39,7 +39,8 @@ export class AuthService {
 			.then(() => {
 				localStorage.setItem('user', JSON.stringify({ uid: '', name: '' }));
 				localStorage.setItem('currentSearch', JSON.stringify({ searchResult: [] }));
-				 localStorage.setItem('myMovieIds', JSON.stringify({ myMovieIds: [] }));
+				localStorage.setItem('myMovieIds', JSON.stringify({ myMovieIds: [] }));
+				localStorage.setItem('matchUser', JSON.stringify({ uid: '', name: '' }));
 			
 
 			})

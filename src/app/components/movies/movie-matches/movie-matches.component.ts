@@ -24,8 +24,10 @@ export class MovieMatchesComponent implements OnInit {
   	this.route.params.subscribe((params) => {
   		this.matchId = params['uid'];
   		this.matchUser = params['name'];
-  		this.matchUser = this.matchUser.charAt(0).toUpperCase() + this.matchUser.slice(1);
+  		localStorage.setItem('matchUser', JSON.stringify({ uid: this.matchId, name: this.matchUser }));
+  	
   		this.myMovieIds = JSON.parse(localStorage.getItem('myMovieIds')).myMovieIds;
+
   		this.movieService.getUserList(this.matchId).subscribe((matches) => {
   			// console.log(matches);
   			// console.log(this.myMovieIds);
