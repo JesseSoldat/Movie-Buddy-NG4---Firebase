@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify({ uid: user.uid, name: user.displayName }));
         // console.log('app');
         // console.log(user);
+
         this.uid = JSON.parse(localStorage.getItem('user')).uid; 
         // console.log(this.uid);
 
@@ -42,7 +43,22 @@ export class AppComponent implements OnInit {
             localStorage.setItem('user', JSON.stringify({ uid: user.uid, name: user.displayName }));
           });
         }
-  			this.router.navigate(['dashboard']);
+
+        let provider = user.providerData[0].providerId;
+        if(provider === 'facebook.com') {
+          console.log('facebook');
+          this.router.navigate(['social-splash', {social: 'facebook'}]);
+
+        } 
+        if(provider === 'google.com') {
+          console.log('google');
+          this.router.navigate(['social-splash', {social: 'google'}]);
+        }
+        if(provider === 'password'){
+          console.log(provider);
+          this.router.navigate(['dashboard']);
+        }
+
       } else {
         localStorage.setItem('user', JSON.stringify({ uid: '', name: '' }));
         localStorage.setItem('currentSearch', JSON.stringify({ searchResult: [] }));

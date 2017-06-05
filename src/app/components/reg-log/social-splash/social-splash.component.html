@@ -1,0 +1,17 @@
+
+
+<div class="container">
+	<br><br>
+	<button class="btn btn-primary" (click)="navigate()">Go to dashboard</button>
+	<br><br>
+	<h1 class="text-center">You logged in with {{social}}!</h1>
+	<hr>
+	<img *ngIf="social === 'facebook'" 
+	class="img-responsive" 
+	src="../../../../assets/facebook.jpg">
+	<img *ngIf="social === 'google'" 
+	class="img-responsive" 
+	src="../../../../assets/google.jpg">
+
+	
+</div>

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/reg-log/login/login.component';
 import { RegisterComponent } from './components/reg-log/register/register.component';
 import { LoginFormComponent } from './components/reg-log/login-form/login-form.component';
+import { SocialSplashComponent } from './components/reg-log/social-splash/social-splash.component';
 import { SocialComponent } from './components/reg-log/social/social.component';
 //site
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -33,10 +34,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Angular2FontAwesomeModule } from 'angular2-font-awesome/angular2-font-awesome';
 import { SearchBoxComponent } from './components/shared/search-box/search-box.component';
 
+
 const appRoutes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'social-splash', component: SocialSplashComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'movie-details', component: MovieDetailsComponent},
   {path: 'movie-favorites', component: MovieFavoritesComponent},
@@ -59,6 +62,7 @@ const appRoutes: Routes = [
     SearchBoxComponent,
     FilterTextPipe,
     FilterListPipe,
+    SocialSplashComponent,
   ],
   imports: [
     BrowserModule,
