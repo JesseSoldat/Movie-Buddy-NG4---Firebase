@@ -1,3 +1,6 @@
+<app-navbar [isAuthenticated]="isAuthenticated">
+</app-navbar>
+
 <div class="container-fluid">
 	<h3 class="text-center" *ngIf="otherMovies">{{matchUser}} has {{otherMovies.length}} other movies that you may like!</h3>
 	<hr>

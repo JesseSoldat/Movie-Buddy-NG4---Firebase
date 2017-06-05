@@ -52,7 +52,7 @@ export class MovieService {
 	}
 
 	removeFromFavorites(key, uid) {
-		console.log(uid);
+		// console.log(uid);
 		this.movies = this.afDb.list(`moviedb/users/${uid}/movies`) as FirebaseListObservable<Movie[]>;
 		this.movies.remove(key)
 	}

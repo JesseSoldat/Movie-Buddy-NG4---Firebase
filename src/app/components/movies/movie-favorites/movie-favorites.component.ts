@@ -61,7 +61,7 @@ export class MovieFavoritesComponent implements OnInit {
                 this.myMovieIds.push(value.id);
               }
           } //for 
-        localStorage.setItem('myMovieIds', JSON.stringify({ myMovieIds: this.myMovieIds }));
+        // localStorage.setItem('myMovieIds', JSON.stringify({ myMovieIds: this.myMovieIds }));
 
         }
 

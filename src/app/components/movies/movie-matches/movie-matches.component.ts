@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../../services/movie';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-movie-matches',
@@ -8,12 +10,14 @@ import { MovieService } from '../../../services/movie';
   styleUrls: ['./movie-matches.component.css']
 })
 export class MovieMatchesComponent implements OnInit {
+  uid: string;
 	matchId: string;
 	matchUser: string;
 	myMovieIds;
 	otherMovies;
 
-	heart: boolean = false;
+	isAuthenticated: boolean = true;
+
   filterTextLength: number = 25;
 
   constructor(private router: Router,
@@ -26,16 +30,28 @@ export class MovieMatchesComponent implements OnInit {
   		this.matchUser = params['name'];
   		localStorage.setItem('matchUser', JSON.stringify({ uid: this.matchId, name: this.matchUser }));
   	
-  		this.myMovieIds = JSON.parse(localStorage.getItem('myMovieIds')).myMovieIds;
+      this.uid = JSON.parse(localStorage.getItem('user')).uid;
+
 
   		this.movieService.getUserList(this.matchId).subscribe((matches) => {
-  			// console.log(matches);
-  			// console.log(this.myMovieIds);
-  			this.otherMovies = matches.filter((match) => {
-  				return this.myMovieIds.indexOf(match.id) === -1;
-  			});
-  			// console.log(this.otherMovies);
-  		});
+
+        this.movieService.getFavorites(this.uid).subscribe((myMovies) => {
+        
+          let myIdArray = [];
+          myMovies.forEach((movie) => {
+            myIdArray.push(movie.id);
+          });
+          // console.log(myIdArray);
+          this.myMovieIds = myIdArray;
+
+            this.otherMovies = matches.filter((match) => {
+                return this.myMovieIds.indexOf(match.id) === -1;
+              });
+              // console.log(this.otherMovies);
+            });
+
+        });
+         		
   	});
   }
 
