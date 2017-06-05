@@ -34,7 +34,7 @@ export class MovieFavoritesComponent implements OnInit {
   	});
 
     jQuery("#myModal").on("hide.bs.modal", () => {
-      
+      this.cancel();
     });
   }
 
@@ -43,7 +43,9 @@ export class MovieFavoritesComponent implements OnInit {
   }
 
   cancel() {
-
+    this.allUsersMovieIds = [];
+    this.isMatchNoMatchList = [];
+    this.myMovieIds = [];
   }
 
   searchOtherList() {
@@ -61,15 +63,13 @@ export class MovieFavoritesComponent implements OnInit {
                 this.myMovieIds.push(value.id);
               }
           } //for 
-        // localStorage.setItem('myMovieIds', JSON.stringify({ myMovieIds: this.myMovieIds }));
-
         }
 
         if(this.uid !== user.$key) {
           let tempArray = [];
           tempArray.push(user.name);
           tempArray.push(user.$key);
-          // console.log(user.movies);
+
           for(let key in user.movies) {
              
             if (user.movies.hasOwnProperty(key)) { 
@@ -78,14 +78,13 @@ export class MovieFavoritesComponent implements OnInit {
                 tempArray.push(value.id);
               }
           } //for
-        this.allUsersMovieIds.push(tempArray);    
-        // console.log(this.allUsersMovieIds);   
+        this.allUsersMovieIds.push(tempArray);   
         }
 
       }); //forEach
      
       this.allUsersMovieIds.forEach((array) =>  {
-        // console.log(array);
+
         let matchObj = {
           name: '',
           uid: '',
