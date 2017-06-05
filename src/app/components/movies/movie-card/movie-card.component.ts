@@ -13,11 +13,15 @@ export class MovieCardComponent implements OnInit {
   @Input() filterTextLength;
   @Input() nav;
   key: string;
+  uid: string;
  
   currentSearch;
   @Output() newSearch = new EventEmitter<any>();
   constructor(private router: Router,
-              private movieService: MovieService) { 
+              private movieService: MovieService) {
+   this.uid = JSON.parse(localStorage.getItem('user')).uid; 
+    // console.log('Movie Card');
+    // console.log(this.uid); 
   }
 
   ngOnInit() { 
@@ -36,7 +40,7 @@ export class MovieCardComponent implements OnInit {
 
   addToFavorites(movie) {    
     this.movieService.getSingleMovie(movie.id).subscribe((movie) => {
-      this.movieService.addToFavorites(movie).then((res) => {
+      this.movieService.addToFavorites(movie, this.uid).then((res) => {
         this.currentSearch = JSON.parse(localStorage.getItem('currentSearch')).searchRes;
         let newList = this.currentSearch.filter((current) => {
           return movie.id != current.id;
@@ -48,8 +52,8 @@ export class MovieCardComponent implements OnInit {
 
   removeFromFavorites(movie) {
     let key = movie.$key;
-    console.log(key);
-    this.movieService.removeFromFavorites(key);
+    // console.log(key);
+    this.movieService.removeFromFavorites(key, this.uid);
   }
 
 }

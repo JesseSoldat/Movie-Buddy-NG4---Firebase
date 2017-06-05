@@ -64,6 +64,8 @@ export class MovieFavoritesComponent implements OnInit {
 
         if(this.uid !== user.$key) {
           let tempArray = [];
+          tempArray.push(user.$key);
+
           for(let key in user.movies) {
             
             if (user.movies.hasOwnProperty(key)) { 
@@ -78,7 +80,9 @@ export class MovieFavoritesComponent implements OnInit {
       }); //forEach
      
       this.allUsersMovieIds.forEach((array) =>  {
+        // console.log(array);
         let matchObj = {
+          uid: array[0],
           isMatch:  _.intersection(this.myMovieIds, array),
           noMatch: _.difference( this.myMovieIds, array),
           length: 0
@@ -89,16 +93,19 @@ export class MovieFavoritesComponent implements OnInit {
         this.isMatchNoMatchList.push(matchObj);
       });
 
-     function compare(b,a) {
-      if (a.length < b.length)
-        return -1;
-      if (a.length > b.length)
-        return 1;
-      return 0;
-    }
+    //  function compare(b,a) {
+    //   if (a.length < b.length)
+    //     return -1;
+    //   if (a.length > b.length)
+    //     return 1;
+    //   return 0;
+    // }
+    this.isMatchNoMatchList = _.sortBy(this.isMatchNoMatchList, (obj) => {
+      obj.length
+    }).reverse();
 
-    this.isMatchNoMatchList.sort(compare); 
-     console.log(this.isMatchNoMatchList);
+    // this.isMatchNoMatchList.sort(compare); 
+     // console.log(this.isMatchNoMatchList);
     });
 
    } 

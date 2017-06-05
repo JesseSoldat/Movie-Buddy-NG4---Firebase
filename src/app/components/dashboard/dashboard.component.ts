@@ -24,6 +24,9 @@ export class DashboardComponent implements OnInit {
   constructor(private movieService: MovieService) {
     this.searchRes = JSON.parse(localStorage.getItem('currentSearch')).searchRes; 
     this.uid = JSON.parse(localStorage.getItem('user')).uid; 
+    // console.log('dashboard');
+    // console.log(this.uid);
+    
     this.compareSearchAndMyList();    
   }
 

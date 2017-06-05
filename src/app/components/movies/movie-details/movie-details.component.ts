@@ -13,6 +13,7 @@ export class MovieDetailsComponent implements OnInit {
   id: string; //id of the movie on the movie database
   key: string; //key to where we store
   heart: boolean; 
+  uid: string;
 
   //Movie
   movie;
@@ -28,6 +29,9 @@ export class MovieDetailsComponent implements OnInit {
   constructor(private movieService: MovieService,
   						private router: Router,
   						private route: ActivatedRoute) { 
+    this.uid = JSON.parse(localStorage.getItem('user')).uid; 
+    // console.log('Movie Details');
+    // console.log(this.uid); 
   }
 
   ngOnInit() {
@@ -76,14 +80,14 @@ export class MovieDetailsComponent implements OnInit {
 
   addToFavorites() {
     this.heart = true;
-    this.movieService.addToFavorites(this.movie).then((key) => {
+    this.movieService.addToFavorites(this.movie, this.uid).then((key) => {
       this.key = key;
     })
   }
 
   removeFromFavorites() {
     this.heart = false;
-    this.movieService.removeFromFavorites(this.key);
+    this.movieService.removeFromFavorites(this.key, this.uid);
   }
 
 

@@ -37,7 +37,7 @@ export class AuthService {
 			.then(() => {
 				localStorage.setItem('user', JSON.stringify({ uid: '', name: '' }));
 				localStorage.setItem('currentSearch', JSON.stringify({ searchResult: [] }));
-				this.router.navigate(['../login']);
+			
 
 			})
 			.catch((err) => {
