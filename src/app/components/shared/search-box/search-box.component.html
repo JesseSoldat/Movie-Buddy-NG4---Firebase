@@ -1,10 +1,13 @@
 <div class="row container" id="searchRow">
 	<div class="col-xs-12">
 		<form>
-			<div class={{inputClass}}>
-	      <input type="text" name="searchStr" class="form-control" placeholder={{placeholder}}
-				[(ngModel)]="searchStr"  (ngModelChange)="change($event)">
+			<div class="form-group-inline col-xs-12 col-sm-6">
+	      <input type="text" name="searchStr" class="form-control" 
+	      placeholder={{placeholder}}
+				[(ngModel)]="searchStr"  
+				(ngModelChange)="change()">
 		   </div>
+
 		   <div *ngIf="searchList === 'searchList'" class={{inputClass}}>    
 		   	<button id="searchListBtn" (click)="SearchOtherLists()"
 				class="btn btn-primary">Search Other's Favorites</button>
@@ -12,3 +15,4 @@
 		</form>
 	</div>
 </div>
+ 

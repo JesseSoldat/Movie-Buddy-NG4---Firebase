@@ -4,8 +4,12 @@
   <h2>My Favorites</h2>
   <hr>
 </div>
-<app-search-box *ngIf="isFavorite && isFavorite.length >= 1"  [placeholder]="'Filter your List...'" [inputClass]="'form-group-inline col-xs-12 col-sm-6'" 
-[searchList]="'searchList'" (filterText)="onFilterText($event)" (searchOtherList)="searchOtherList()">
+<app-search-box *ngIf="isFavorite && isFavorite.length >= 1"  
+[placeholder]="'Filter your List...'" 
+(filterText)="onFilterText($event)" 
+
+[searchList]="'searchList'" 
+(searchOtherList)="searchOtherList()">
 </app-search-box>
 
 <div *ngIf="isFavorite && isFavorite.length < 1" class="row">

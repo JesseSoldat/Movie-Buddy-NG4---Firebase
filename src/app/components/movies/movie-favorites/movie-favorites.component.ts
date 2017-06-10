@@ -103,18 +103,18 @@ export class MovieFavoritesComponent implements OnInit {
         this.isMatchNoMatchList.push(matchObj);
       });
 
-    //  function compare(b,a) {
-    //   if (a.length < b.length)
-    //     return -1;
-    //   if (a.length > b.length)
-    //     return 1;
-    //   return 0;
-    // }
-    this.isMatchNoMatchList = _.sortBy(this.isMatchNoMatchList, (obj) => {
-      obj.length
-    }).reverse();
+     function compare(b,a) {
+      if (a.length < b.length)
+        return -1;
+      if (a.length > b.length)
+        return 1;
+      return 0;
+    }
+    // this.isMatchNoMatchList = _.sortBy(this.isMatchNoMatchList, (obj) => {
+    //   obj.length
+    // }).reverse();
 
-    // this.isMatchNoMatchList.sort(compare); 
+    this.isMatchNoMatchList.sort(compare); 
      // console.log(this.isMatchNoMatchList);
     });
 
